@@ -20,14 +20,14 @@ namespace lab1
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.BackColor = System.Drawing.Color.FromArgb(255, 248, 250);
+            this.BackColor = System.Drawing.Color.FromArgb(240, 248, 255);
 
             var lblVertex = new Label
             {
                 Text = "Выберите вершину для удаления:",
                 Location = new System.Drawing.Point(20, 20),
                 AutoSize = true,
-                ForeColor = System.Drawing.Color.FromArgb(180, 40, 90)
+                ForeColor = System.Drawing.Color.FromArgb(0, 80, 180)
             };
 
             var numVertex = new NumericUpDown
@@ -37,8 +37,8 @@ namespace lab1
                 Minimum = 0,
                 Maximum = maxVertices - 1,
                 Value = 0,
-                BackColor = System.Drawing.Color.FromArgb(255, 240, 245),
-                ForeColor = System.Drawing.Color.FromArgb(180, 40, 90)
+                BackColor = System.Drawing.Color.FromArgb(240, 248, 255),
+                ForeColor = System.Drawing.Color.FromArgb(0, 80, 180)
             };
 
             var btnOK = new Button
@@ -47,8 +47,8 @@ namespace lab1
                 Location = new System.Drawing.Point(70, 55),
                 Width = 60,
                 DialogResult = DialogResult.OK,
-                BackColor = System.Drawing.Color.FromArgb(255, 200, 220),
-                ForeColor = System.Drawing.Color.FromArgb(180, 40, 90)
+                BackColor = System.Drawing.Color.FromArgb(200, 225, 245),
+                ForeColor = System.Drawing.Color.FromArgb(0, 80, 180)
             };
             btnOK.Click += (s, e) => { SelectedVertex = (int)numVertex.Value; };
 
@@ -58,8 +58,8 @@ namespace lab1
                 Location = new System.Drawing.Point(155, 55),
                 Width = 60,
                 DialogResult = DialogResult.Cancel,
-                BackColor = System.Drawing.Color.FromArgb(255, 220, 230),
-                ForeColor = System.Drawing.Color.FromArgb(180, 40, 90)
+                BackColor = System.Drawing.Color.FromArgb(200, 225, 245),
+                ForeColor = System.Drawing.Color.FromArgb(0, 80, 180)
             };
 
             this.Controls.AddRange(new Control[] { lblVertex, numVertex, btnOK, btnCancel });

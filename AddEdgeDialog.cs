@@ -21,7 +21,7 @@ namespace lab1
                 FormBorderStyle = FormBorderStyle.FixedDialog,
                 MaximizeBox = false,
                 MinimizeBox = false,
-                BackColor = System.Drawing.Color.FromArgb(255, 248, 250)
+                BackColor = System.Drawing.Color.FromArgb(240, 248, 255)
             };
 
             var lblFrom = new Label
@@ -29,7 +29,7 @@ namespace lab1
                 Text = "От вершины:",
                 Location = new System.Drawing.Point(20, 20),
                 AutoSize = true,
-                ForeColor = System.Drawing.Color.FromArgb(180, 40, 90)
+                ForeColor = System.Drawing.Color.FromArgb(0, 80, 180)
             };
 
             var numFrom = new NumericUpDown
@@ -39,8 +39,8 @@ namespace lab1
                 Minimum = 0,
                 Maximum = maxVertices - 1,
                 Value = 0,
-                BackColor = System.Drawing.Color.FromArgb(255, 240, 245),
-                ForeColor = System.Drawing.Color.FromArgb(180, 40, 90)
+                BackColor = System.Drawing.Color.FromArgb(240, 248, 255),
+                ForeColor = System.Drawing.Color.FromArgb(0, 80, 180)
             };
 
             var lblTo = new Label
@@ -48,7 +48,7 @@ namespace lab1
                 Text = "К вершине:",
                 Location = new System.Drawing.Point(20, 50),
                 AutoSize = true,
-                ForeColor = System.Drawing.Color.FromArgb(180, 40, 90)
+                ForeColor = System.Drawing.Color.FromArgb(0, 80, 180)
             };
 
             var numTo = new NumericUpDown
@@ -58,8 +58,8 @@ namespace lab1
                 Minimum = 0,
                 Maximum = maxVertices - 1,
                 Value = Math.Min(1, maxVertices - 1),
-                BackColor = System.Drawing.Color.FromArgb(255, 240, 245),
-                ForeColor = System.Drawing.Color.FromArgb(180, 40, 90)
+                BackColor = System.Drawing.Color.FromArgb(240, 248, 255),
+                ForeColor = System.Drawing.Color.FromArgb(0, 80, 180)
             };
 
             var btnOK = new Button
@@ -68,8 +68,8 @@ namespace lab1
                 Location = new System.Drawing.Point(70, 80),
                 Width = 60,
                 DialogResult = DialogResult.OK,
-                BackColor = System.Drawing.Color.FromArgb(255, 200, 220),
-                ForeColor = System.Drawing.Color.FromArgb(180, 40, 90)
+                BackColor = System.Drawing.Color.FromArgb(200, 225, 245),
+                ForeColor = System.Drawing.Color.FromArgb(0, 80, 180)
             };
 
             var btnCancel = new Button
@@ -78,8 +78,8 @@ namespace lab1
                 Location = new System.Drawing.Point(150, 80),
                 Width = 60,
                 DialogResult = DialogResult.Cancel,
-                BackColor = System.Drawing.Color.FromArgb(255, 220, 230),
-                ForeColor = System.Drawing.Color.FromArgb(180, 40, 90)
+                BackColor = System.Drawing.Color.FromArgb(200, 225, 245),
+                ForeColor = System.Drawing.Color.FromArgb(0, 80, 180)
             };
 
             form.Controls.AddRange(new Control[] { lblFrom, numFrom, lblTo, numTo, btnOK, btnCancel });
