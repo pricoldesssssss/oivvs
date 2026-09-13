@@ -15,18 +15,28 @@ namespace lab1
         private const int VertexRadius = 20;
         private int draggingVertex = -1;
 
-        private Color[] pinkColors = new Color[]
+        private Color[] blueColors = new Color[]
         {
-            Color.FromArgb(255, 182, 193),
-            Color.FromArgb(255, 192, 203),
-            Color.FromArgb(255, 105, 180),
-            Color.FromArgb(255, 20, 147),
-            Color.FromArgb(255, 182, 193),
-            Color.FromArgb(255, 192, 203),
-            Color.FromArgb(255, 105, 180),
-            Color.FromArgb(255, 20, 147),
-            Color.FromArgb(255, 182, 193),
-            Color.FromArgb(255, 192, 203)
+            Color.FromArgb(173, 216, 230),
+            Color.FromArgb(135, 206, 235),
+            Color.FromArgb(70, 130, 180),
+            Color.FromArgb(100, 149, 237),
+            Color.FromArgb(173, 216, 230),
+            Color.FromArgb(135, 206, 235),
+            Color.FromArgb(70, 130, 180),
+            Color.FromArgb(100, 149, 237),
+            Color.FromArgb(173, 216, 230),
+            Color.FromArgb(135, 206, 235),
+            Color.FromArgb(70, 130, 180),
+            Color.FromArgb(100, 149, 237),
+            Color.FromArgb(173, 216, 230),
+            Color.FromArgb(135, 206, 235),
+            Color.FromArgb(70, 130, 180),
+            Color.FromArgb(100, 149, 237),
+            Color.FromArgb(173, 216, 230),
+            Color.FromArgb(135, 206, 235),
+            Color.FromArgb(70, 130, 180),
+            Color.FromArgb(100, 149, 237)
         };
 
         public GraphVisualizer(Graph graph)
@@ -37,15 +47,27 @@ namespace lab1
             InitializePositions();
         }
 
+        private int panelWidth = 800;
+        private int panelHeight = 600;
+
+        public void SetPanelSize(int width, int height)
+        {
+            panelWidth = width;
+            panelHeight = height;
+            InitializePositions();
+        }
+
         private void InitializePositions()
         {
             vertexPositions.Clear();
             if (graph == null || graph.VerticesCount == 0) return;
 
             int n = graph.VerticesCount;
-            int centerX = 300;
-            int centerY = 250;
+            int centerX = panelWidth / 2;
+            int centerY = panelHeight / 2;
             int radius = Math.Min(centerX, centerY) - 60;
+
+            if (radius < 50) radius = 50;
 
             for (int i = 0; i < n; i++)
             {
@@ -54,6 +76,10 @@ namespace lab1
                 int y = centerY + (int)(radius * Math.Sin(angle));
                 vertexPositions.Add(new Point(x, y));
             }
+        }
+        public List<Point> GetVertexPositions()
+        {
+            return new List<Point>(vertexPositions);
         }
 
         public void StartDragging(int vertex)
@@ -65,9 +91,6 @@ namespace lab1
         {
             if (draggingVertex >= 0 && draggingVertex < vertexPositions.Count)
             {
-                int margin = 50;
-                position.X = Math.Max(margin, Math.Min(600 - margin, position.X));
-                position.Y = Math.Max(margin, Math.Min(500 - margin, position.Y));
                 vertexPositions[draggingVertex] = position;
             }
         }
@@ -126,23 +149,22 @@ namespace lab1
         {
             if (graph == null || graph.VerticesCount == 0)
             {
-                g.Clear(Color.FromArgb(255, 248, 250));
+                g.Clear(Color.FromArgb(240, 248, 255));
                 return;
             }
 
-            g.Clear(Color.FromArgb(255, 248, 250));
+            g.Clear(Color.FromArgb(240, 248, 255));
             DrawEdges(g);
             DrawVertices(g);
             DrawLabels(g);
             if (path.Count > 0)
                 DrawPath(g);
-            //DrawLegend(g);
         }
 
         private void DrawEdges(Graphics g)
         {
             int n = graph.VerticesCount;
-            Color edgeColor = Color.FromArgb(150, 80, 120);
+            Color edgeColor = Color.FromArgb(70, 130, 180);
 
             for (int i = 0; i < n; i++)
             {
@@ -184,7 +206,7 @@ namespace lab1
                         );
 
                         using (var font = new Font("Arial", 9, FontStyle.Bold))
-                        using (var brush = new SolidBrush(Color.FromArgb(200, 50, 100)))
+                        using (var brush = new SolidBrush(Color.FromArgb(0, 80, 180)))
                         {
                             StringFormat sf = new StringFormat
                             {
@@ -199,7 +221,7 @@ namespace lab1
                                 (int)textSize.Width + 8,
                                 (int)textSize.Height + 4
                             );
-                            using (var bgBrush = new SolidBrush(Color.FromArgb(255, 248, 250)))
+                            using (var bgBrush = new SolidBrush(Color.FromArgb(240, 248, 255)))
                             {
                                 g.FillRectangle(bgBrush, rect);
                             }
@@ -242,23 +264,23 @@ namespace lab1
                     VertexRadius * 2
                 );
 
-                Color fillColor = pinkColors[i % pinkColors.Length];
-                Color borderColor = Color.FromArgb(180, 40, 90);
+                Color fillColor = blueColors[i % blueColors.Length];
+                Color borderColor = Color.FromArgb(0, 80, 180);
 
                 if (i == startVertex)
                 {
-                    fillColor = Color.FromArgb(255, 100, 150);
-                    borderColor = Color.FromArgb(200, 50, 100);
+                    fillColor = Color.FromArgb(70, 150, 220);
+                    borderColor = Color.FromArgb(0, 80, 180);
                 }
                 else if (i == endVertex)
                 {
-                    fillColor = Color.FromArgb(255, 50, 100);
-                    borderColor = Color.FromArgb(180, 20, 70);
+                    fillColor = Color.FromArgb(220, 50, 50);
+                    borderColor = Color.FromArgb(180, 20, 20);
                 }
                 else if (path.Contains(i))
                 {
-                    fillColor = Color.FromArgb(255, 220, 240);
-                    borderColor = Color.FromArgb(255, 150, 200);
+                    fillColor = Color.FromArgb(200, 230, 255);
+                    borderColor = Color.FromArgb(0, 120, 220);
                 }
 
                 using (var fillBrush = new SolidBrush(fillColor))
@@ -284,7 +306,7 @@ namespace lab1
             {
                 Point pos = vertexPositions[i];
                 using (var font = new Font("Arial", 10, FontStyle.Bold))
-                using (var brush = new SolidBrush(Color.FromArgb(180, 40, 90)))
+                using (var brush = new SolidBrush(Color.FromArgb(0, 80, 180)))
                 {
                     StringFormat sf = new StringFormat
                     {
@@ -300,7 +322,7 @@ namespace lab1
         {
             if (path.Count < 2) return;
 
-            using (var pen = new Pen(Color.FromArgb(255, 50, 120), 3))
+            using (var pen = new Pen(Color.FromArgb(255, 50, 50), 3))
             {
                 pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
 
@@ -334,72 +356,12 @@ namespace lab1
             if (pathDistance > 0 && path.Count > 0)
             {
                 using (var font = new Font("Arial", 12, FontStyle.Bold))
-                using (var brush = new SolidBrush(Color.FromArgb(200, 50, 100)))
+                using (var brush = new SolidBrush(Color.FromArgb(0, 80, 180)))
                 {
                     Point lastPos = vertexPositions[path[path.Count - 1]];
-                    g.DrawString($"🌸 Расстояние: {pathDistance}", font, brush,
+                    g.DrawString($"Расстояние: {pathDistance}", font, brush,
                                 new Point(lastPos.X + VertexRadius + 10, lastPos.Y - 10));
                 }
-            }
-        }
-
-        private void DrawLegend(Graphics g)
-        {
-            int x = 10, y = 10;
-            using (var font = new Font("Arial", 9))
-            {
-                // Начальная вершина
-                using (var brush = new SolidBrush(Color.FromArgb(255, 100, 150)))
-                using (var pen = new Pen(Color.FromArgb(200, 50, 100), 2))
-                {
-                    g.FillEllipse(brush, x, y, 15, 15);
-                    g.DrawEllipse(pen, x, y, 15, 15);
-                }
-                g.DrawString("= Начальная вершина", font, Brushes.DarkGray, x + 20, y);
-                y += 22;
-
-                // Конечная вершина
-                using (var brush = new SolidBrush(Color.FromArgb(255, 50, 100)))
-                using (var pen = new Pen(Color.FromArgb(180, 20, 70), 2))
-                {
-                    g.FillEllipse(brush, x, y, 15, 15);
-                    g.DrawEllipse(pen, x, y, 15, 15);
-                }
-                g.DrawString("= Конечная вершина", font, Brushes.DarkGray, x + 20, y);
-                y += 22;
-
-                // Вершина на пути
-                using (var brush = new SolidBrush(Color.FromArgb(255, 220, 240)))
-                using (var pen = new Pen(Color.FromArgb(255, 150, 200), 2))
-                {
-                    g.FillEllipse(brush, x, y, 15, 15);
-                    g.DrawEllipse(pen, x, y, 15, 15);
-                }
-                g.DrawString("= Вершина на пути", font, Brushes.DarkGray, x + 20, y);
-                y += 22;
-
-                // Кратчайший путь
-                using (var pen = new Pen(Color.FromArgb(255, 50, 120), 2))
-                {
-                    pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-                    g.DrawLine(pen, x, y + 7, x + 15, y + 7);
-                }
-                g.DrawString("= Кратчайший путь", font, Brushes.DarkGray, x + 20, y);
-                y += 22;
-
-                // Обычная вершина
-                using (var brush = new SolidBrush(Color.FromArgb(255, 182, 193)))
-                using (var pen = new Pen(Color.FromArgb(180, 40, 90), 1))
-                {
-                    g.FillEllipse(brush, x, y, 15, 15);
-                    g.DrawEllipse(pen, x, y, 15, 15);
-                }
-                g.DrawString("= Обычная вершина", font, Brushes.DarkGray, x + 20, y);
-                y += 22;
-
-                g.DrawString("🌸 Правый клик = меню", font, Brushes.LightPink, x, y);
-                y += 20;
-                g.DrawString("🌸 Ctrl+Клик = выбрать конец", font, Brushes.LightPink, x, y);
             }
         }
 
