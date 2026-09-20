@@ -128,10 +128,10 @@ namespace lab1
 
             dist[start] = 0;
 
-            // ШАГ 2-4: Основной цикл
+           
             for (int count = 0; count < n - 1; count++)
             {
-                // ШАГ 3: Находим вершину с минимальной временной пометкой
+                
                 int u = -1;
                 int minDist = int.MaxValue;
 
@@ -143,13 +143,14 @@ namespace lab1
                         u = i;
                     }
                 }
-
+                 
+                //!!!!!!!!!!!!!!!!!!!
                 if (u == -1 || u == end) break;
 
-                // ШАГ 4: Делаем пометку постоянной
+                
                 visited[u] = true;
 
-                // ШАГ 2: Обновляем расстояния до соседей
+                
                 for (int v = 0; v < n; v++)
                 {
                     int weight = adjacencyMatrix[u, v];
@@ -185,7 +186,7 @@ namespace lab1
             };
         }
 
-        // ==================== АЛГОРИТМ ФЛОЙДА ====================
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!АЛГОРИТМ ФЛОЙДА 
 
         public FloydResult Floyd()
         {
