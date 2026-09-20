@@ -66,7 +66,6 @@ namespace lab1
             int centerX = panelWidth / 2;
             int centerY = panelHeight / 2;
             int radius = Math.Min(centerX, centerY) - 60;
-
             if (radius < 50) radius = 50;
 
             for (int i = 0; i < n; i++)
@@ -109,6 +108,13 @@ namespace lab1
                 position.Y = Math.Max(margin, Math.Min(500 - margin, position.Y));
                 vertexPositions[vertex] = position;
             }
+        }
+
+        public Point GetVertexPosition(int vertex)
+        {
+            if (vertex >= 0 && vertex < vertexPositions.Count)
+                return vertexPositions[vertex];
+            return new Point(0, 0);
         }
 
         public void SetPath(List<int> path, int distance)

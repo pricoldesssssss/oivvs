@@ -106,7 +106,7 @@ namespace lab1
 
             var lblDijkstraHeader = new Label
             {
-                Text = $"АЛГОРИТМ ДЕЙКСТРЫ × {vertexCount}",
+                Text = $"АЛГОРИТМ ДЕЙКСТРЫ",
                 Dock = DockStyle.Top,
                 Height = 40,
                 TextAlign = ContentAlignment.MiddleCenter,
